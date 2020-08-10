@@ -3,10 +3,15 @@ import {
     MDBCol, MDBRow, MDBBtn,
     MDBCard, MDBCardBody, MDBCardTitle,
     MDBCardImage, MDBIcon, MDBCardText,
-    MDBCardFooter
+    MDBCardFooter, MDBLink
 } from 'mdbreact'
+
+import { BrowserRouter as Route } from 'react-router-dom';
 import CommentModal from './CommentModal'
 import api from '../api';
+import EditGif from './edit/editGif' 
+import EditMeme from './edit/editMeme'
+import EditPun from './edit/editPun'
 
 class UserContentCard extends Component {
     constructor(props) {
@@ -18,6 +23,24 @@ class UserContentCard extends Component {
             commentAmt: this.props.commentAmt
         }
     }
+
+    // componentDidMount = async () => {
+    //     try {
+    //         const response = await (api.editGif, api.editMeme, api.editPun);
+    //         this.setState({
+    //             userId: response.data._id,
+    //             username: response.data.username,
+    //             profileImg: response.data.profileImg,
+    //             profileBio: response.data.profileBio,
+    //             authenticated: true
+    //         })
+    //     } catch (err) {
+    //         console.log(err)
+    //         this.setState({
+    //             authenticated: false
+    //         })
+    //     }
+    // }
 
     toggleCommentModal = () => {
         this.setState({
@@ -57,6 +80,25 @@ class UserContentCard extends Component {
         // }
     }
 
+        // on click function to update edit
+        handleEdits = async content => {
+            const id = this.props.id;
+            await this.setState({
+                likes: this.state.likes + 1
+            })
+            try {
+                const payload = {
+                   content : this.state.content,
+                   caption : this.state.caption
+                }
+                if (content === 'Meme') await api.editMeme(id, payload);
+                if (content === 'Gif') await api.editGif(id, payload);
+                if (content === 'Pun') await api.editPun(id, payload);
+            } catch (err) {
+                console.log(err)
+            }
+        }
+
     // on click function to update likes
     handleLikes = async content => {
         const id = this.props.id;
@@ -67,7 +109,6 @@ class UserContentCard extends Component {
             const payload = {
                 likes: this.state.likes
             }
-
             if (content === 'Meme') await api.updateMeme(id, payload);
             if (content === 'Gif') await api.updateGif(id, payload);
             if (content === 'Pun') await api.updatePun(id, payload);
@@ -97,8 +138,12 @@ class UserContentCard extends Component {
                         <MDBCardText>
                             {this.props.caption}
                         </MDBCardText>
+                
 
-                        <MDBBtn href="#" size="sm" onClick={() => this.handleEdit(this.props.contentType)}>Edit</MDBBtn> edit route
+                        <MDBLink to='/session/edit/meme/:id'>Edit Meme</MDBLink>
+                        <MDBLink to='/session/edit/gif/:id'>Edit Gif</MDBLink>
+                        <MDBLink to='/session/edit/pun/:id'>Edit Pun</MDBLink>
+                        
                         <MDBBtn onClick={this.handleDelete} size="sm">delete</MDBBtn>{/*delete route*/}
 
                     </MDBCardBody>
@@ -146,7 +191,11 @@ class UserContentCard extends Component {
                     />
                     :
                     null
-                }
+                }                            
+                <Route path="/session/edit/meme/:id" component={EditMeme} />
+                <Route path="/session/edit/pun/:id" component={EditPun} />
+                <Route path="/session/edit/gif/:id" component={EditGif} /> 
+
             </Fragment>
         )
     }

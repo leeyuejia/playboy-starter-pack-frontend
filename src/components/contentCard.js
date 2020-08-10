@@ -28,16 +28,6 @@ class ContentCard extends Component {
         })
     }
 
-    toggleEditGifModal = () => {
-        this.setState({
-            editGifModal: !this.state.editGifModal
-        })
-    }
-
-    handleEditGif = (commentAmt) => {
-        this.props.handleEditGif(commentAmt)
-    }
-
     updateGif = (commentAmt) => {
         this.setState({
             id: this.state.id,
@@ -45,6 +35,24 @@ class ContentCard extends Component {
             gifCaption: '',
             currentUser : this.state.currentUser
         })
+    }
+    // on click function to update edit
+    handleEdits = async content => {
+        const id = this.props.id;
+        await this.setState({
+            likes: this.state.likes + 1
+        })
+        try {
+            const payload = {
+               content : this.state.content,
+               caption : this.state.caption
+            }
+            if (content === 'Meme') await api.editMeme(id, payload);
+            if (content === 'Gif') await api.editGif(id, payload);
+            if (content === 'Pun') await api.editPun(id, payload);
+        } catch (err) {
+            console.log(err)
+        }
     }
 
     // on click function to update likes
@@ -110,7 +118,7 @@ class ContentCard extends Component {
                         </MDBCol> */}
                         <MDBCol>
                             <MDBRow className='mx-auto justify-content-center'>
-                                <MDBIcon icon="edit" size="lg" onClick={this.toggleEditGifModal} className="m-auto align-self-center thumbs-up" />
+                                <MDBIcon icon="edit" size="lg" onClick={this.handleEdits(this.props.contentType)} className="m-auto align-self-center thumbs-up" />
                                 <h5 className="font-weight-light m-auto align-self-center"> {this.state.commentAmt}</h5> 
                             </MDBRow>
                         </MDBCol>

@@ -2,7 +2,8 @@ import React, { Component, Fragment } from 'react';
 import { MDBRow } from 'mdbreact';
 import ContentCard from '../components/contentCard';
 import api from '../api';
-import SearchBox from '../components/SearchBox'
+import SearchBox from '../components/SearchBox';
+import EditGif from '../components/edit/editGif';
 
 export class GifsPage extends Component {
     state = {
@@ -63,6 +64,9 @@ export class GifsPage extends Component {
                         width='500' height='300'
                         style={{ margin: '0 auto' }} />
                 </MDBRow>
+
+                {/* Edit Button */}
+                <EditGif handleChange={this.handleChange} />
 
                 {/* Search box */}
                 <SearchBox handleChange={this.handleChange} />

@@ -1,5 +1,5 @@
 import React, { Component} from 'react'
-import Features from '../components/Features.js'
+import Features from '../components/features.js'
 import NavBar from '../components/navBar'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import {
@@ -9,9 +9,11 @@ import {
     PunsPage,
     NewMeme,
     NewGif,
-    NewPun
+    NewPun,
+
   }
     from '.'
+
 import api from '../api'
 
 class DashboardPage extends Component {
@@ -73,10 +75,6 @@ class DashboardPage extends Component {
                     <Route path="/session/new/meme" component={NewMeme} />
                     <Route path="/session/new/pun" component={NewPun} />
                     <Route path="/session/new/gif" component={NewGif} />
-
-                    <Route path="/session/edit/meme/:id" component={editContent} />
-                    <Route path="/session/edit/pun/:id" component={editContent} />
-                    <Route path="/session/edit/gif/:id" component={editContent} />
 
                 </Switch>
                 {/* first time NavBar is rendered */}
