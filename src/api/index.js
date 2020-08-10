@@ -48,6 +48,7 @@ const editPun = (id, payload) => api.put(`/pun/edit/${id}`, payload);
 const postComment = payload => api.post(`/${payload.id}/comment`, payload)
 const getOneContent = id => api.get(`/content/${id}`);
 const deleteContent = id => api.delete(`/content/${id}`);
+const updateContentByUsername = (payload,username) => api.put(`/content/${username}`, payload)
 
 
 const apis = {
@@ -74,10 +75,14 @@ const apis = {
     getOneContent,
     deleteContent,
     getUserByUsername,
+<<<<<<< HEAD
     editGif,
     editMeme,
     editPun,
     postComment,
+=======
+    updateContentByUsername
+>>>>>>> c145a140ab3a1a6a40a0d6f01496b688ed289680
 }
 
 export default apis

@@ -37,6 +37,7 @@ class UserDashboardPage extends Component {
             const response = await api.getUserByUsername(this.props.match.params.username);
             console.log(response.data)
             this.setState({
+                userData: response.data,
                 userId: response.data._id,
                 username: response.data.username,
                 profileImg: response.data.profileImg,
@@ -114,8 +115,9 @@ class UserDashboardPage extends Component {
                 profileImg : this.state.profileImg,
                 profileBio : this.state.profileBio
             }
-            const update = await api.updateUser(payload);
-            if(update) alert('updated')
+            await api.updateContentByUsername(payload , this.state.userData.username)
+            const update = await api.updateUser(payload);            
+            if(update) alert(`updated old username, ${this.state.userData.username} with ${payload.username}`)
             await this.toggleEditProfileModal();
         }
         catch (err) {

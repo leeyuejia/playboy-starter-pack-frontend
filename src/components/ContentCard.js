@@ -7,12 +7,19 @@ import {
 } 
 from 'mdbreact'
 import api from '../api';
+<<<<<<< HEAD:src/components/contentCard.js
 import CommentModal from './CommentModal';
+=======
+import CommentModal from './CommentModal'
+import Share from './Share'
+>>>>>>> c145a140ab3a1a6a40a0d6f01496b688ed289680:src/components/ContentCard.js
 
 class ContentCard extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            commentModal: false,
+            shareModal :false,
             likes: this.props.likeAmt
         }
     }
@@ -22,11 +29,17 @@ class ContentCard extends Component {
             commentModal: !this.state.commentModal
         })
     }
+    toggleShare = () => {
+        this.setState({
+            shareModal : !this.state.shareModal
+        })
+    }
     updateComment = (commentAmt) => {
         this.setState({
             commentAmt : commentAmt
         })
     }
+<<<<<<< HEAD:src/components/contentCard.js
 
     updateGif = (commentAmt) => {
         this.setState({
@@ -55,6 +68,8 @@ class ContentCard extends Component {
         }
     }
 
+=======
+>>>>>>> c145a140ab3a1a6a40a0d6f01496b688ed289680:src/components/ContentCard.js
     // on click function to update likes
     handleLikes = async content => {
         const id = this.props.id;
@@ -110,7 +125,12 @@ class ContentCard extends Component {
                     </MDBCardBody>
                     <MDBRow className='mx-0 p-2 justify-content-center align-items-end' style={{ flex: '1 1 auto' }}>
                         <MDBCol>
-                            <MDBIcon icon="share" size="lg" className='thumbs-up'/>
+                        <MDBIcon 
+                                icon="share-alt" 
+                                size="lg" 
+                                className="m-auto align-self-center thumbs-up" 
+                                onClick={this.toggleShare}
+                            />
                         </MDBCol>
                         {/* <MDBCol>
                             <MDBIcon icon="edit" size="lg" onClick={this.toggleEditGifModal} className="m-auto align-self-center thumbs-up" />
@@ -152,6 +172,7 @@ class ContentCard extends Component {
                     :
                     null
                     }
+<<<<<<< HEAD:src/components/contentCard.js
 
                 {this.state.editGifModal? 
                     <editGifModal
@@ -165,6 +186,19 @@ class ContentCard extends Component {
                     :
                     null
                     }
+=======
+                {this.state.shareModal? 
+                    <Share
+                        shareModal={this.state.shareModal}
+                        handleShareModal={this.toggleShare}
+                        pun={this.props.pun}
+                        url={this.props.imgUrl}
+                        contentType={ this.props.contentType}
+                        text={this.props.caption}/>
+                    :
+                    null
+                }
+>>>>>>> c145a140ab3a1a6a40a0d6f01496b688ed289680:src/components/ContentCard.js
             </Fragment>
         )
     }

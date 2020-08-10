@@ -65,7 +65,7 @@ export class NavBar extends Component {
 
   render() {
     return (
-      <MDBNavbar color="rgba-black-strong" dark expand="md">
+      <MDBNavbar color="elegant-color" dark expand="md">
         <div style={this.navBarStyle()}>
         <MDBNavbarBrand>
           <Link to='/session/dashboard'><strong className="white-text">Playboy Starter Pack</strong></Link>
@@ -85,6 +85,9 @@ export class NavBar extends Component {
             </MDBNavItem>
             <MDBNavItem>
               <MDBNavLink to="/session/puns">Puns</MDBNavLink>
+            </MDBNavItem>
+            <MDBNavItem>
+              <MDBNavLink to="/session/game"><MDBIcon far icon="hand-point-right mdb-gallery-view-icon mr-1" />Prove Your Worth!</MDBNavLink>
             </MDBNavItem>
 
           </MDBNavbarNav>
