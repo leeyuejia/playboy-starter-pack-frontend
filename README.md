@@ -3,7 +3,7 @@
 -- https://github.com/leeyuejia/playboy-starter-pack
 
 -- (link to repo)
-random changes
+random changes and readme
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## PACKAGE TO INSTALL BEFORE USAGE
