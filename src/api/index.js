@@ -2,8 +2,8 @@ import Axios from 'axios';
 
 const api = Axios.create({
     withCredentials: true,
-    // baseURL: 'http://localhost:3000/app',
-    baseURL: process.env.REACT_APP_BACKEND_URL || 'http://localhost:3000/app',
+    baseURL: 'http://localhost:3000/app',
+    // baseURL: process.env.REACT_APP_BACKEND_URL || 'http://localhost:3000/app',
 })
 
 // User
