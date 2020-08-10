@@ -16,7 +16,7 @@ export class SpecialFeature extends Component {
         }
     }
     generatePickupLines = () => {
-        Axios.get('http://pebble-pickup.herokuapp.com/tweets/random')
+        Axios.get('https://pebble-pickup.herokuapp.com/tweets/random')
         .then(async res => {
             await this.setState({
                 content: res.data.tweet
