@@ -12,13 +12,26 @@ export class CommentModal extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            id : this.props.id,
+            // id : this.props.id,
             postComment : '',
             comments : this.props.comments,
             currentUser : this.props.currentUser,
-
         }
     }
+    componentDidMount = async() => {
+        try {
+            const getComment = await api.getOneContent(this.props.id)
+            console.log(getComment.data._id)
+            await this.setState({
+                id : getComment.data._id,
+                comments : getComment.data.comments,
+                currentUser : this.props.currentUser
+            })
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
     handleChange = event => {
         this.setState({
             [event.target.name]: event.target.value
@@ -35,6 +48,7 @@ export class CommentModal extends Component {
                 comment : this.state.postComment,
                 currentUser : this.state.currentUser
             }
+            console.log(payload)
             await api.postComment(payload)
             const result = await api.getOneContent(this.state.id)
             await this.setState({
