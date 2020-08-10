@@ -32,7 +32,7 @@ export class Features extends Component {
             </p>
           </MDBCol>
           <MDBCol md="4" className='pb-5'>
-            <Link to ='/session/memes'><img width='auto' height='80px' position='cover' src={gifIcon} alt='gificon'/>
+            <Link to ='/session/gifs'><img width='auto' height='80px' position='cover' src={gifIcon} alt='gificon'/>
           {/* <Link to ='/session/gifs'><MDBIcon icon="chart-area" size="3x" className="red-text" /> */}
             <h5 className="font-weight-bold my-4" style={h5Style}>GIFS</h5>
             </Link>
@@ -42,7 +42,7 @@ export class Features extends Component {
             </p>
           </MDBCol>
           <MDBCol md="4" className='pb-5'>
-            <Link to ='/session/memes'><img width='auto' height='80px' position='cover' src={punIcon} alt='punicon'/>
+            <Link to ='/session/puns'><img width='auto' height='80px' position='cover' src={punIcon} alt='punicon'/>
               {/* <Link to ='/session/puns'><MDBIcon icon="book" size="3x" className="cyan-text" /> */}
               <h5 className="font-weight-bold my-4" style={h5Style}>PUNS</h5>
             </Link>
