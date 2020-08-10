@@ -17,7 +17,7 @@
     "serve": "^11.3.2"
   },
   "scripts": {
-    "start" : "serve -s /build",
+    "start": "serve -s ./build",
     "start:ios": "PORT=8000 react-scripts start",
     "start:win": "set PORT=8000 && react-scripts start",
     "build": "react-scripts build",
