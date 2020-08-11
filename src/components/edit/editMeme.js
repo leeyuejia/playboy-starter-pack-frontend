@@ -6,15 +6,14 @@ import {
     MDBCardTitle
 }
     from 'mdbreact';
-
 import api from '../../api';
 
-export class NewGif extends Component {
+export class EditMeme extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            gifImg: '',
-            gifCaption: '',
+            memeImg: '',
+            memeCaption: '',
             addSuccess: false
         }
     }
@@ -28,24 +27,26 @@ export class NewGif extends Component {
             this.setState({
                 addSuccess : false
             })
-            return <Redirect to='/session/gifs' />
+            return <Redirect to='/session/edit/memes' />
         } else return false
     }
-    registerGif = async event => {
+    registerMeme = async event => {
         event.preventDefault();
+
         try {
-            const payload = {
-                content: this.state.gifImg,
-                caption : this.state.gifCaption
+            const payload = { 
+                content: this.state.memeImg,
+                caption: this.state.memeCaption,
             }
-            await api.registerGif(payload)
-            console.log('registered')
-            await alert('Gif added!')
+            await api.registerMeme(payload)
+
             this.setState({
-                gifImg: '',
-                gifCaption: '',
+                memeImg: '',
+                memeCaption: '',
                 addSuccess: true
             })
+            console.log('Memes added')
+            await alert('Added Memes')
             console.log('this.state is: ', this.state)
             await this.redirecting()
         } catch (err) {
@@ -54,35 +55,33 @@ export class NewGif extends Component {
             })
         }
     }
-
-
-
     render() {
         return (
             <Fragment>
+                {/* <NavBar /> */}
                 {this.redirecting()}
                 <MDBContainer className='my-3'>
                     <MDBCol style={{ maxWidth: "35rem" }}>
                         <MDBCard>
                             <MDBCardTitle className='m-2'>
-                                Create Giphy
+                                Edit Meme
                    </MDBCardTitle>
                             <MDBCardBody>
-                                <form onSubmit={this.registerGif}>
-                                    <MDBInput label='Add a giphy image'
+                                <form onSubmit={this.registerMeme}>
+                                    <MDBInput label='Edit an image'
                                         type='url'
-                                        name='gifImg'
-                                        accept='.gif'
-                                        value={this.state.gifImg}
+                                        name='memeImg'
+                                        accept='image/*'
+                                        value={this.state.memeImg}
                                         onChange={this.handleChange}>
                                     </MDBInput>
                                     <MDBInput label='caption'
                                         type='text'
-                                        name='gifCaption'
-                                        value={this.state.gifCaption}
+                                        name='memeCaption'
+                                        value={this.state.memeCaption}
                                         onChange={this.handleChange}>
                                     </MDBInput>
-                                    <MDBBtn type='submit'>Add gif</MDBBtn>
+                                    <MDBBtn type='submit'>Edit memes</MDBBtn>
                                 </form>
                             </MDBCardBody>
                         </MDBCard>
@@ -93,4 +92,31 @@ export class NewGif extends Component {
     }
 }
 
-export default NewGif
+export default EditMeme
+
+// constructor (props) {
+//     super(props)
+//     this.state = {
+//       description: '',
+//       todos: []
+//     }
+//   }
+
+//   updateToDo = (todo, index) => {
+//     todo.complete = !todo.complete
+//     fetch('todos/' + todo._id, {
+//       body: JSON.stringify(todo),
+//       method: 'PUT',
+//       headers: {
+//         'Content-Type': 'application/json'
+//       }
+//     })
+//       .then(updatedToDo => updatedToDo.json())
+//       .then(jsonedToDo => {
+//         fetch('/todos')
+//           .then(response => response.json())
+//           .then(todos => {
+//             this.setState({ todos: todos })
+//           })
+//       })
+//   }

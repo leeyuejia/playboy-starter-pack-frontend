@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import { Redirect} from "react-router-dom"
+import { Redirect } from "react-router-dom"
 import {
     MDBContainer, MDBBtn, MDBInput,
     MDBCol, MDBCard, MDBCardBody,
@@ -9,7 +9,7 @@ import {
 
 import api from '../../api';
 
-export class NewGif extends Component {
+export class EditGif extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -28,19 +28,20 @@ export class NewGif extends Component {
             this.setState({
                 addSuccess : false
             })
-            return <Redirect to='/session/gifs' />
+            return <Redirect to='/session/edit/gif' />
         } else return false
     }
-    registerGif = async event => {
+    editGif = async event => {
         event.preventDefault();
         try {
             const payload = {
+                id : this.state.id,
                 content: this.state.gifImg,
                 caption : this.state.gifCaption
             }
-            await api.registerGif(payload)
+            await api.editGif(payload)
             console.log('registered')
-            await alert('Gif added!')
+            await alert('Gif edited!')
             this.setState({
                 gifImg: '',
                 gifCaption: '',
@@ -54,9 +55,6 @@ export class NewGif extends Component {
             })
         }
     }
-
-
-
     render() {
         return (
             <Fragment>
@@ -65,11 +63,11 @@ export class NewGif extends Component {
                     <MDBCol style={{ maxWidth: "35rem" }}>
                         <MDBCard>
                             <MDBCardTitle className='m-2'>
-                                Create Giphy
+                                Edit Giphy
                    </MDBCardTitle>
                             <MDBCardBody>
                                 <form onSubmit={this.registerGif}>
-                                    <MDBInput label='Add a giphy image'
+                                    <MDBInput label='Edit a giphy image'
                                         type='url'
                                         name='gifImg'
                                         accept='.gif'
@@ -82,7 +80,7 @@ export class NewGif extends Component {
                                         value={this.state.gifCaption}
                                         onChange={this.handleChange}>
                                     </MDBInput>
-                                    <MDBBtn type='submit'>Add gif</MDBBtn>
+                                    <MDBBtn type='submit'>Edit gif</MDBBtn>
                                 </form>
                             </MDBCardBody>
                         </MDBCard>
@@ -93,4 +91,4 @@ export class NewGif extends Component {
     }
 }
 
-export default NewGif
+export default EditGif

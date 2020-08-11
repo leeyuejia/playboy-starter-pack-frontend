@@ -74,7 +74,7 @@ export class CommentModal extends Component {
                     Comments
                 </MDBModalHeader>
                 <MDBModalBody>
-                    <MDBListGroup style={{ width: "100%", height: '200px', overflow: 'scroll' }}>
+                    {/* <MDBListGroup style={{ width: "100%", height: '200px', overflow: 'scroll' }}>
                         {this.state.comments.map ((comment,index)=> {
                             return <MDBListGroupItem className ={index}>
                                 <div className="d-flex w-100 align-items-end">
@@ -84,7 +84,7 @@ export class CommentModal extends Component {
                             </MDBListGroupItem>
                         })
                     }
-                    </MDBListGroup>
+                    </MDBListGroup> */}
                     <form onSubmit={this.postComment}>
                         <MDBInput label='comment'
                             type='text'

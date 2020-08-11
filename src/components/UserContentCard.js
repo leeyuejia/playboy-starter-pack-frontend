@@ -3,23 +3,38 @@ import {
     MDBCol, MDBRow, MDBBtn,
     MDBCard, MDBCardBody, MDBCardTitle,
     MDBCardImage, MDBIcon, MDBCardText,
-    MDBCardFooter
+    MDBCardFooter, MDBLink
 } from 'mdbreact'
+import { Route, Switch, Link } from 'react-router-dom'
 import CommentModal from './CommentModal'
 import Share from './Share'
 import api from '../api';
+import EditGif from './edit/editGif' 
+import EditMeme from './edit/editMeme'
+import EditPun from './edit/editPun'
+import memeIcon from '../public/meme_icon.png'
+import gifIcon from '../public/gif_icon.gif'
+import punIcon from '../public/pun_icon.png'
+import EditGifPage from '../pages/EditGifPage';
+
+import EditMemePage from '../pages/EditMemePage';
+
+import EditPunPage from '../pages/EditPunPage';
+
 
 class UserContentCard extends Component {
     constructor(props) {
         super(props)
 
         this.state = {
+            id: this.props.id,
             likes: this.props.likeAmt,
             commentModal: false,
             shareModal : false,
             commentAmt: this.props.commentAmt
         }
     }
+
 
     toggleCommentModal = () => {
         this.setState({
@@ -31,7 +46,7 @@ class UserContentCard extends Component {
             commentAmt: commentAmt
         })
     }
-    
+
     handleDelete = async () => {
         const payload = {
             id : this.props.id,
@@ -45,20 +60,17 @@ class UserContentCard extends Component {
         else return false
     }
 
-    // on click function to edit content
+        // on click function to update edit
+        handleEdits = async content => {
+            try {
+                if (content === 'Meme')  window.location.href=`/session/edit/meme/${this.props.id}`;
+                if (content === 'Gif')   window.location.href=`/session/edit/gif/${this.props.id}`;
+                if (content === 'Pun')  window.location.href=`/session/edit/pun/${this.props.id}`;
 
-    editOneGif = () => {
-        alert('editing')
-        // this.setState({
-        //     edit: true,
-        //     image: this.props.imgUrl,
-        //     caption: this.props.caption
-        // })
-        // const payload = {
-        //     image: this.props.imgUrl,
-        //     caption: this.props.caption
-        // }
-    }
+            } catch (err) {
+                console.log(err)
+                }
+        }
 
     // on click function to update likes
     handleLikes = async content => {
@@ -70,7 +82,6 @@ class UserContentCard extends Component {
             const payload = {
                 likes: this.state.likes
             }
-
             if (content === 'Meme') await api.updateMeme(id, payload);
             if (content === 'Gif') await api.updateGif(id, payload);
             if (content === 'Pun') await api.updatePun(id, payload);
@@ -91,6 +102,7 @@ class UserContentCard extends Component {
     render() {
         return (
             <Fragment>
+                <Switch>
                 <MDBCard style={{ width: "22rem" }} className='m-4'>
 
                     <MDBCardImage
@@ -104,8 +116,10 @@ class UserContentCard extends Component {
                         <MDBCardText>
                             {this.props.caption}
                         </MDBCardText>
+                
 
-                        <MDBBtn href="#" size="sm" onClick={() => this.handleEdit(this.props.contentType)}>Edit</MDBBtn>
+                        <MDBBtn href="#" size="sm" onClick={() => this.handleEdits(this.props.id)}>Edit</MDBBtn> edit route
+                    
                         <MDBBtn onClick={this.handleDelete} size="sm">delete</MDBBtn>{/*delete route*/}
 
                     </MDBCardBody>
@@ -132,6 +146,26 @@ class UserContentCard extends Component {
 
                         </MDBCol>
                         <MDBCol>
+                        <MDBCol>
+                        <Route path="/session/edit/gif/:id" component={EditPunPage} />
+                        <Route path="/session/edit/gif/:id" component={EditMemePage} />
+                        <Route path="/session/edit/gif/:id" component={EditGifPage} />
+                            <MDBRow className='mx-auto justify-content-center'>
+                                <Link to ='/session/edit/gifs/:id'><img width='auto' height='80px' position='cover' src={gifIcon} alt='gificon'/>
+                                <h5 className="font-weight-light m-auto align-self-center"> {this.state.commentAmt}</h5> 
+                                </Link>
+                            </MDBRow>
+                            <MDBRow className='mx-auto justify-content-center'>
+                                <Link to ='/session/edit/puns/:id'><img width='auto' height='80px' position='cover' src={punIcon} alt='gificon'/>
+                                <h5 className="font-weight-light m-auto align-self-center"> {this.state.commentAmt}</h5> 
+                                </Link>
+                            </MDBRow>
+                            <MDBRow className='mx-auto justify-content-center'>
+                                <Link to ='/session/edit/memes/:id'><img width='auto' height='80px' position='cover' src={memeIcon} alt='gificon'/>
+                                <h5 className="font-weight-light m-auto align-self-center"> {this.state.commentAmt}</h5>
+                                </Link> 
+                            </MDBRow>
+                        </MDBCol>
 
                             <MDBRow className='mx-auto justify-content-center' >
                                 <MDBIcon icon="comment-dots" onClick={() => { this.toggleCommentModal() }} size="lg" className="m-auto align-self-center thumbs-up" />
@@ -169,6 +203,8 @@ class UserContentCard extends Component {
                     :
                     null
                 }
+
+                </Switch>
             </Fragment>
         )
     }

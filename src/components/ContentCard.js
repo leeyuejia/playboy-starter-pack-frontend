@@ -7,13 +7,14 @@ import {
 } 
 from 'mdbreact'
 import api from '../api';
-import CommentModal from './CommentModal'
+import CommentModal from './CommentModal';
 import Share from './Share'
 
 class ContentCard extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            id: this.props.id,
             commentModal: false,
             shareModal :false,
             likes: this.props.likeAmt
@@ -35,6 +36,27 @@ class ContentCard extends Component {
             commentAmt : commentAmt
         })
     }
+
+    updateGif = (commentAmt) => {
+        this.setState({
+            id: this.state.id,
+            gifImg: '',
+            gifCaption: '',
+            currentUser : this.state.currentUser
+        })
+    }
+        // on click function to update edit
+        handleEdits = async content => {
+            try {
+                if (content === 'Meme')  window.location.href=`/session/edit/meme/${this.props.id}`;
+                if (content === 'Gif')   window.location.href=`/session/edit/gif/${this.props.id}`;
+                if (content === 'Pun')  window.location.href=`/session/edit/pun/${this.props.id}`;
+
+            } catch (err) {
+                console.log(err)
+                }
+        }
+
     // on click function to update likes
     handleLikes = async content => {
         const id = this.props.id;
@@ -97,6 +119,13 @@ class ContentCard extends Component {
                                 onClick={this.toggleShare}
                             />
                         </MDBCol>
+
+                        <MDBCol>
+                            <MDBRow className='mx-auto justify-content-center'>
+                                <MDBIcon icon="edit" size="lg" onClick={this.handleEdits(this.props.contentType)} className="m-auto align-self-center thumbs-up" />
+                                <h5 className="font-weight-light m-auto align-self-center"> {this.state.commentAmt}</h5> 
+                            </MDBRow>
+                        </MDBCol>
                         <MDBCol>
                             <MDBRow className='mx-auto justify-content-center'>
                                 <MDBIcon icon="thumbs-up" size="lg" className="m-auto align-self-center thumbs-up" onClick={() => this.handleLikes(this.props.contentType)} />
@@ -127,6 +156,7 @@ class ContentCard extends Component {
                     :
                     null
                     }
+
                 {this.state.shareModal? 
                     <Share
                         shareModal={this.state.shareModal}

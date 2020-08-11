@@ -13,6 +13,7 @@ import {
     GamePage
   }
     from '.'
+
 import api from '../api'
 
 class DashboardPage extends Component {
