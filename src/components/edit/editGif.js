@@ -75,7 +75,6 @@ export class EditGif extends Component {
                                     <MDBInput label='Edit an image'
                                         type='url'
                                         name='gifImg'
-                                        accept='image/*'
                                         value={this.state.gifImg}
                                         onChange={this.handleChange}>
                                     </MDBInput>

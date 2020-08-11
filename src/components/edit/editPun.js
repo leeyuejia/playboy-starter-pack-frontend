@@ -75,7 +75,6 @@ export class EditPun extends Component {
                                     <MDBInput label='Edit pun-ch line'
                                         type='text'
                                         name='punImg'
-                                        accept='image/*'
                                         value={this.state.punImg}
                                         onChange={this.handleChange}>
                                     </MDBInput>

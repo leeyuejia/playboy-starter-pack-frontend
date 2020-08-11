@@ -61,6 +61,7 @@ export class EditMeme extends Component {
         }
     }
     render() {
+        console.log(this.state.memeImg)
         return (
             <Fragment>
                 {/* <NavBar /> */}
@@ -75,7 +76,6 @@ export class EditMeme extends Component {
                                     <MDBInput label='Edit an image'
                                         type='url'
                                         name='memeImg'
-                                        accept='image/*'
                                         value={this.state.memeImg}
                                         onChange={this.handleChange}>
                                     </MDBInput>
