@@ -105,7 +105,7 @@ class UserContentCard extends Component {
                             {this.props.caption}
                         </MDBCardText>
 
-                        <MDBBtn href="#" size="sm" onClick={() => this.handleEdit(this.props.contentType)}>Edit</MDBBtn> edit route
+                        <MDBBtn href="#" size="sm" onClick={() => this.handleEdit(this.props.contentType)}>Edit</MDBBtn>
                         <MDBBtn onClick={this.handleDelete} size="sm">delete</MDBBtn>{/*delete route*/}
 
                     </MDBCardBody>
