@@ -3,7 +3,7 @@ import { MDBRow } from 'mdbreact';
 import ContentCard from '../components/ContentCard';
 import api from '../api';
 import SearchBox from '../components/SearchBox';
-import EditGif from '../components/edit/editGif';
+import EditGif from '../components/edit/editGif'
 
 export class GifsPage extends Component {
     state = {
@@ -67,6 +67,7 @@ export class GifsPage extends Component {
 
                 {/* Edit Button */}
                 <EditGif handleChange={this.handleChange} />
+
 
                 {/* Search box */}
                 <SearchBox handleChange={this.handleChange} />

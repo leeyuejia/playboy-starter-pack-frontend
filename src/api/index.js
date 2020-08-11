@@ -72,17 +72,14 @@ const apis = {
     updateMeme,
     updateGif,
     updatePun,
-    getOneContent,
-    deleteContent,
-    getUserByUsername,
-<<<<<<< HEAD
     editGif,
     editMeme,
     editPun,
     postComment,
-=======
+    getOneContent,
+    deleteContent,
+    getUserByUsername,
     updateContentByUsername
->>>>>>> c145a140ab3a1a6a40a0d6f01496b688ed289680
 }
 
 export default apis

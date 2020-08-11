@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import { Redirect} from "react-router-dom"
+import { Redirect } from "react-router-dom"
 import {
     MDBContainer, MDBBtn, MDBInput,
     MDBCol, MDBCard, MDBCardBody,
@@ -28,13 +28,14 @@ export class EditGif extends Component {
             this.setState({
                 addSuccess : false
             })
-            return <Redirect to='/session/gifs' />
+            return <Redirect to='/session/edit/gif' />
         } else return false
     }
     editGif = async event => {
         event.preventDefault();
         try {
             const payload = {
+                id : this.state.id,
                 content: this.state.gifImg,
                 caption : this.state.gifCaption
             }
@@ -62,11 +63,11 @@ export class EditGif extends Component {
                     <MDBCol style={{ maxWidth: "35rem" }}>
                         <MDBCard>
                             <MDBCardTitle className='m-2'>
-                                Create Giphy
+                                Edit Giphy
                    </MDBCardTitle>
                             <MDBCardBody>
                                 <form onSubmit={this.registerGif}>
-                                    <MDBInput label='Add a giphy image'
+                                    <MDBInput label='Edit a giphy image'
                                         type='url'
                                         name='gifImg'
                                         accept='.gif'
@@ -79,7 +80,7 @@ export class EditGif extends Component {
                                         value={this.state.gifCaption}
                                         onChange={this.handleChange}>
                                     </MDBInput>
-                                    <MDBBtn type='submit'>Add gif</MDBBtn>
+                                    <MDBBtn type='submit'>Edit gif</MDBBtn>
                                 </form>
                             </MDBCardBody>
                         </MDBCard>

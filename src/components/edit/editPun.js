@@ -27,7 +27,7 @@ export class EditPun extends Component {
             this.setState({
                 addSuccess : false
             })
-            return <Redirect to='/session/puns' />
+            return <Redirect to='/session/edit/puns' />
         } else return false
     }
     registerPun = async event => {

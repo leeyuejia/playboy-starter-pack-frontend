@@ -1,5 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import UserContentCard from '../components/UserContentCard';
+import { Route } from 'react-router-dom'
+import EditPun from './edit/editPun';
 
 class UserPuns extends Component {
     render() {
@@ -16,6 +18,7 @@ class UserPuns extends Component {
                 contentType={this.props.contentType}
                 likeAmt={this.props.likeAmt}
                 handleDelete = {this.props.deleteContent} />
+                <Route path="/session/edit/pun/:id" component={EditPun} />
             </Fragment>
         )
     }

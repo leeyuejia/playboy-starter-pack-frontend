@@ -7,17 +7,14 @@ import {
 } 
 from 'mdbreact'
 import api from '../api';
-<<<<<<< HEAD:src/components/contentCard.js
 import CommentModal from './CommentModal';
-=======
-import CommentModal from './CommentModal'
 import Share from './Share'
->>>>>>> c145a140ab3a1a6a40a0d6f01496b688ed289680:src/components/ContentCard.js
 
 class ContentCard extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            id: this.props.id,
             commentModal: false,
             shareModal :false,
             likes: this.props.likeAmt
@@ -39,7 +36,6 @@ class ContentCard extends Component {
             commentAmt : commentAmt
         })
     }
-<<<<<<< HEAD:src/components/contentCard.js
 
     updateGif = (commentAmt) => {
         this.setState({
@@ -49,27 +45,18 @@ class ContentCard extends Component {
             currentUser : this.state.currentUser
         })
     }
-    // on click function to update edit
-    handleEdits = async content => {
-        const id = this.props.id;
-        await this.setState({
-            likes: this.state.likes + 1
-        })
-        try {
-            const payload = {
-               content : this.state.content,
-               caption : this.state.caption
-            }
-            if (content === 'Meme') await api.editMeme(id, payload);
-            if (content === 'Gif') await api.editGif(id, payload);
-            if (content === 'Pun') await api.editPun(id, payload);
-        } catch (err) {
-            console.log(err)
-        }
-    }
+        // on click function to update edit
+        handleEdits = async content => {
+            try {
+                if (content === 'Meme')  window.location.href=`/session/edit/meme/${this.props.id}`;
+                if (content === 'Gif')   window.location.href=`/session/edit/gif/${this.props.id}`;
+                if (content === 'Pun')  window.location.href=`/session/edit/pun/${this.props.id}`;
 
-=======
->>>>>>> c145a140ab3a1a6a40a0d6f01496b688ed289680:src/components/ContentCard.js
+            } catch (err) {
+                console.log(err)
+                }
+        }
+
     // on click function to update likes
     handleLikes = async content => {
         const id = this.props.id;
@@ -132,10 +119,7 @@ class ContentCard extends Component {
                                 onClick={this.toggleShare}
                             />
                         </MDBCol>
-                        {/* <MDBCol>
-                            <MDBIcon icon="edit" size="lg" onClick={this.toggleEditGifModal} className="m-auto align-self-center thumbs-up" />
-                            <h5 className="font-weight-light m-auto align-self-center"> {this.state.gifModal}</h5> 
-                        </MDBCol> */}
+
                         <MDBCol>
                             <MDBRow className='mx-auto justify-content-center'>
                                 <MDBIcon icon="edit" size="lg" onClick={this.handleEdits(this.props.contentType)} className="m-auto align-self-center thumbs-up" />
@@ -172,21 +156,7 @@ class ContentCard extends Component {
                     :
                     null
                     }
-<<<<<<< HEAD:src/components/contentCard.js
 
-                {this.state.editGifModal? 
-                    <editGifModal
-                        currentUser = {this.props.currentUser}
-                        id ={this.props.id}
-                        gifModal = {this.state.editGifModal}
-                        editGifModal = {this.toggleEditGifModal}
-                        content = {this.props.contentType}
-                        handleEditGif = {this.handleEditGif}
-                    />
-                    :
-                    null
-                    }
-=======
                 {this.state.shareModal? 
                     <Share
                         shareModal={this.state.shareModal}
@@ -198,7 +168,6 @@ class ContentCard extends Component {
                     :
                     null
                 }
->>>>>>> c145a140ab3a1a6a40a0d6f01496b688ed289680:src/components/ContentCard.js
             </Fragment>
         )
     }

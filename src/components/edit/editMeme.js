@@ -27,7 +27,7 @@ export class EditMeme extends Component {
             this.setState({
                 addSuccess : false
             })
-            return <Redirect to='/session/memes' />
+            return <Redirect to='/session/edit/memes' />
         } else return false
     }
     registerMeme = async event => {
@@ -64,11 +64,11 @@ export class EditMeme extends Component {
                     <MDBCol style={{ maxWidth: "35rem" }}>
                         <MDBCard>
                             <MDBCardTitle className='m-2'>
-                                Create Meme
+                                Edit Meme
                    </MDBCardTitle>
                             <MDBCardBody>
                                 <form onSubmit={this.registerMeme}>
-                                    <MDBInput label='Add an image'
+                                    <MDBInput label='Edit an image'
                                         type='url'
                                         name='memeImg'
                                         accept='image/*'
@@ -81,7 +81,7 @@ export class EditMeme extends Component {
                                         value={this.state.memeCaption}
                                         onChange={this.handleChange}>
                                     </MDBInput>
-                                    <MDBBtn type='submit'>Add memes</MDBBtn>
+                                    <MDBBtn type='submit'>Edit memes</MDBBtn>
                                 </form>
                             </MDBCardBody>
                         </MDBCard>
