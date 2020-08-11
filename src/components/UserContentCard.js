@@ -3,24 +3,11 @@ import {
     MDBCol, MDBRow, MDBBtn,
     MDBCard, MDBCardBody, MDBCardTitle,
     MDBCardImage, MDBIcon, MDBCardText,
-    MDBCardFooter, MDBLink
+    MDBCardFooter
 } from 'mdbreact'
-import { Route, Switch, Link } from 'react-router-dom'
 import CommentModal from './CommentModal'
 import Share from './Share'
 import api from '../api';
-import EditGif from './edit/editGif' 
-import EditMeme from './edit/editMeme'
-import EditPun from './edit/editPun'
-import memeIcon from '../public/meme_icon.png'
-import gifIcon from '../public/gif_icon.gif'
-import punIcon from '../public/pun_icon.png'
-import EditGifPage from '../pages/EditGifPage';
-
-import EditMemePage from '../pages/EditMemePage';
-
-import EditPunPage from '../pages/EditPunPage';
-
 
 class UserContentCard extends Component {
     constructor(props) {
@@ -30,7 +17,7 @@ class UserContentCard extends Component {
             id: this.props.id,
             likes: this.props.likeAmt,
             commentModal: false,
-            shareModal : false,
+            shareModal: false,
             commentAmt: this.props.commentAmt
         }
     }
@@ -49,28 +36,23 @@ class UserContentCard extends Component {
 
     handleDelete = async () => {
         const payload = {
-            id : this.props.id,
-            contentType : this.props.contentType
+            id: this.props.id,
+            contentType: this.props.contentType
         }
-        
+
         let c = window.confirm('confirm delete')
-        if(c) {
+        if (c) {
             this.props.handleDelete(payload)
         }
         else return false
     }
 
-        // on click function to update edit
-        handleEdits = async content => {
-            try {
-                if (content === 'Meme')  window.location.href=`/session/edit/meme/${this.props.id}`;
-                if (content === 'Gif')   window.location.href=`/session/edit/gif/${this.props.id}`;
-                if (content === 'Pun')  window.location.href=`/session/edit/pun/${this.props.id}`;
-
-            } catch (err) {
-                console.log(err)
-                }
-        }
+    // on click function to update edit
+    handleEdits = contentType => {
+        if (contentType === 'Meme') window.location.href = `/session/edit/meme/${this.props.id}`;
+        if (contentType === 'Gif') window.location.href = `/session/edit/gif/${this.props.id}`;
+        if (contentType === 'Pun') window.location.href = `/session/edit/pun/${this.props.id}`;
+    }
 
     // on click function to update likes
     handleLikes = async content => {
@@ -91,20 +73,18 @@ class UserContentCard extends Component {
     }
     toggleShare = () => {
         this.setState({
-            shareModal : !this.state.shareModal
+            shareModal: !this.state.shareModal
         })
     }
 
     renderProfile = () => {
-        window.location.href=`/session/profile/${this.props.postedBy}`
+        window.location.href = `/session/profile/${this.props.postedBy}`
     }
 
     render() {
         return (
             <Fragment>
-                <Switch>
                 <MDBCard style={{ width: "22rem" }} className='m-4'>
-
                     <MDBCardImage
                         style={{ width: '100%', height: 'auto' }}
                         className="img-fluid mx-auto"
@@ -116,56 +96,36 @@ class UserContentCard extends Component {
                         <MDBCardText>
                             {this.props.caption}
                         </MDBCardText>
-                
 
-                        <MDBBtn href="#" size="sm" onClick={() => this.handleEdits(this.props.id)}>Edit</MDBBtn> edit route
-                    
+
+                        <MDBBtn size="sm" onClick={() => this.handleEdits(this.props.contentType)}>Edit</MDBBtn>
+
                         <MDBBtn onClick={this.handleDelete} size="sm">delete</MDBBtn>{/*delete route*/}
 
                     </MDBCardBody>
                     <MDBRow className='mx-0 p-2 justify-content-center align-items-end' style={{ flex: '1 1 auto' }}>
                         <MDBCol>
-                            <MDBIcon 
-                                icon="share-alt" 
-                                size="lg" 
-                                className="m-auto align-self-center thumbs-up" 
+                            <MDBIcon
+                                icon="share-alt"
+                                size="lg"
+                                className="m-auto align-self-center thumbs-up"
                                 onClick={this.toggleShare}
                             />
                         </MDBCol>
                         <MDBCol>
 
                             <MDBRow className='mx-auto justify-content-center'>
-                                <MDBIcon 
-                                    icon="thumbs-up" 
-                                    size="lg" 
-                                    className="m-auto align-self-center thumbs-up" 
-                                    onClick={() => this.handleLikes(this.props.contentType)} 
+                                <MDBIcon
+                                    icon="thumbs-up"
+                                    size="lg"
+                                    className="m-auto align-self-center thumbs-up"
+                                    onClick={() => this.handleLikes(this.props.contentType)}
                                 />
                                 <h5 className="font-weight-light m-auto">{this.state.likes}</h5>
                             </MDBRow>
 
                         </MDBCol>
                         <MDBCol>
-                        <MDBCol>
-                        <Route path="/session/edit/gif/:id" component={EditPunPage} />
-                        <Route path="/session/edit/gif/:id" component={EditMemePage} />
-                        <Route path="/session/edit/gif/:id" component={EditGifPage} />
-                            <MDBRow className='mx-auto justify-content-center'>
-                                <Link to ='/session/edit/gifs/:id'><img width='auto' height='80px' position='cover' src={gifIcon} alt='gificon'/>
-                                <h5 className="font-weight-light m-auto align-self-center"> {this.state.commentAmt}</h5> 
-                                </Link>
-                            </MDBRow>
-                            <MDBRow className='mx-auto justify-content-center'>
-                                <Link to ='/session/edit/puns/:id'><img width='auto' height='80px' position='cover' src={punIcon} alt='gificon'/>
-                                <h5 className="font-weight-light m-auto align-self-center"> {this.state.commentAmt}</h5> 
-                                </Link>
-                            </MDBRow>
-                            <MDBRow className='mx-auto justify-content-center'>
-                                <Link to ='/session/edit/memes/:id'><img width='auto' height='80px' position='cover' src={memeIcon} alt='gificon'/>
-                                <h5 className="font-weight-light m-auto align-self-center"> {this.state.commentAmt}</h5>
-                                </Link> 
-                            </MDBRow>
-                        </MDBCol>
 
                             <MDBRow className='mx-auto justify-content-center' >
                                 <MDBIcon icon="comment-dots" onClick={() => { this.toggleCommentModal() }} size="lg" className="m-auto align-self-center thumbs-up" />
@@ -192,19 +152,17 @@ class UserContentCard extends Component {
                     :
                     null
                 }
-                {this.state.shareModal? 
+                {this.state.shareModal ?
                     <Share
                         shareModal={this.state.shareModal}
                         handleShareModal={this.toggleShare}
                         pun={this.props.pun}
                         url={this.props.imgUrl}
-                        contentType={ this.props.contentType}
-                        text={this.props.caption}/>
+                        contentType={this.props.contentType}
+                        text={this.props.caption} />
                     :
                     null
                 }
-
-                </Switch>
             </Fragment>
         )
     }

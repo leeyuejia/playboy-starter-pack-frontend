@@ -1,5 +1,4 @@
 import React, { Component, Fragment } from 'react'
-import { Redirect} from "react-router-dom"
 import {
     MDBContainer, MDBBtn, MDBInput,
     MDBCol, MDBCard, MDBCardBody,
@@ -14,41 +13,47 @@ export class EditMeme extends Component {
         this.state = {
             memeImg: '',
             memeCaption: '',
+            username:'' ,
             addSuccess: false
         }
     }
+
+    componentDidMount = async () => {
+        try {
+            const response = await api.getOneMeme(this.props.id);
+            const userResponse = await api.getUser()
+            this.setState({
+                memeImg: response.data.content,
+                memeCaption: response.data.caption,
+                username: userResponse.data.username
+            })
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
     handleChange = event => {
         this.setState({
             [event.target.name]: event.target.value
         })
     }
-    redirecting = () => { // adding a function to redirect
-        if (this.state.addSuccess) {
-            this.setState({
-                addSuccess : false
-            })
-            return <Redirect to='/session/edit/memes' />
-        } else return false
-    }
-    registerMeme = async event => {
+
+    updateMeme = async event => {
         event.preventDefault();
 
         try {
-            const payload = { 
+            const payload = {
                 content: this.state.memeImg,
                 caption: this.state.memeCaption,
             }
-            await api.registerMeme(payload)
+            await api.updateMeme(this.props.id, payload)
 
             this.setState({
                 memeImg: '',
                 memeCaption: '',
                 addSuccess: true
             })
-            console.log('Memes added')
-            await alert('Added Memes')
-            console.log('this.state is: ', this.state)
-            await this.redirecting()
+            window.location.href=`/session/profile/${this.state.username}`
         } catch (err) {
             this.setState({
                 error: true
@@ -59,7 +64,6 @@ export class EditMeme extends Component {
         return (
             <Fragment>
                 {/* <NavBar /> */}
-                {this.redirecting()}
                 <MDBContainer className='my-3'>
                     <MDBCol style={{ maxWidth: "35rem" }}>
                         <MDBCard>
@@ -67,7 +71,7 @@ export class EditMeme extends Component {
                                 Edit Meme
                    </MDBCardTitle>
                             <MDBCardBody>
-                                <form onSubmit={this.registerMeme}>
+                                <form onSubmit={this.updateMeme}>
                                     <MDBInput label='Edit an image'
                                         type='url'
                                         name='memeImg'
@@ -93,30 +97,3 @@ export class EditMeme extends Component {
 }
 
 export default EditMeme
-
-// constructor (props) {
-//     super(props)
-//     this.state = {
-//       description: '',
-//       todos: []
-//     }
-//   }
-
-//   updateToDo = (todo, index) => {
-//     todo.complete = !todo.complete
-//     fetch('todos/' + todo._id, {
-//       body: JSON.stringify(todo),
-//       method: 'PUT',
-//       headers: {
-//         'Content-Type': 'application/json'
-//       }
-//     })
-//       .then(updatedToDo => updatedToDo.json())
-//       .then(jsonedToDo => {
-//         fetch('/todos')
-//           .then(response => response.json())
-//           .then(todos => {
-//             this.setState({ todos: todos })
-//           })
-//       })
-//   }

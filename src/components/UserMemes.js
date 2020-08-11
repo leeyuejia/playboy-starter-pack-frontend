@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import { Route } from 'react-router-dom'
 import UserContentCard from '../components/UserContentCard';
-import EditMeme from './edit/editMeme';
+import EditMeme from './edit/EditMeme';
 
 class UserMemes extends Component {
     render() {

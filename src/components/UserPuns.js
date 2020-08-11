@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import UserContentCard from '../components/UserContentCard';
 import { Route } from 'react-router-dom'
-import EditPun from './edit/editPun';
+import EditPun from './edit/EditPun';
 
 class UserPuns extends Component {
     render() {
