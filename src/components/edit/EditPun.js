@@ -1,88 +1,91 @@
 import React, { Component, Fragment } from 'react'
-import { Redirect} from "react-router-dom"
 import {
     MDBContainer, MDBBtn, MDBInput,
     MDBCol, MDBCard, MDBCardBody,
     MDBCardTitle
 }
     from 'mdbreact';
-
 import api from '../../api';
 
-export class NewGif extends Component {
+export class EditPun extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            gifImg: '',
-            gifCaption: '',
+            punImg: '',
+            punCaption: '',
+            username:'' ,
             addSuccess: false
         }
     }
+
+    componentDidMount = async () => {
+        try {
+            const response = await api.getOnePun(this.props.id);
+            const userResponse = await api.getUser()
+            this.setState({
+                punImg: response.data.content,
+                punCaption: response.data.caption,
+                username: userResponse.data.username
+            })
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
     handleChange = event => {
         this.setState({
             [event.target.name]: event.target.value
         })
     }
-    redirecting = () => { // adding a function to redirect
-        if (this.state.addSuccess) {
-            this.setState({
-                addSuccess : false
-            })
-            return <Redirect to='/session/gifs' />
-        } else return false
-    }
-    registerGif = async event => {
+
+    updatePun = async event => {
         event.preventDefault();
+
         try {
             const payload = {
-                content: this.state.gifImg,
-                caption : this.state.gifCaption
+                content: this.state.punImg,
+                caption: this.state.punCaption,
             }
-            await api.registerGif(payload)
-            console.log('registered')
-            await alert('Gif added!')
+            await api.updatePun(this.props.id, payload)
+
             this.setState({
-                gifImg: '',
-                gifCaption: '',
+                punImg: '',
+                punCaption: '',
                 addSuccess: true
             })
-            console.log('this.state is: ', this.state)
-            await this.redirecting()
+            window.location.href=`/session/profile/${this.state.username}`
         } catch (err) {
             this.setState({
                 error: true
             })
         }
     }
-
-
-
     render() {
         return (
             <Fragment>
-                {this.redirecting()}
+                {/* <NavBar /> */}
                 <MDBContainer className='my-3'>
                     <MDBCol style={{ maxWidth: "35rem" }}>
                         <MDBCard>
                             <MDBCardTitle className='m-2'>
-                                Create Giphy
+                                Edit pun
                    </MDBCardTitle>
                             <MDBCardBody>
-                                <form onSubmit={this.registerGif}>
-                                    <MDBInput label='Add a giphy image'
-                                        type='url'
-                                        name='gifImg'
-                                        accept='.gif'
-                                        value={this.state.gifImg}
+                                <form onSubmit={this.updatePun}>
+                                    <MDBInput label='Edit pun-ch line'
+                                        type='text'
+                                        name='punImg'
+                                        accept='image/*'
+                                        value={this.state.punImg}
                                         onChange={this.handleChange}>
                                     </MDBInput>
                                     <MDBInput label='caption'
                                         type='text'
-                                        name='gifCaption'
-                                        value={this.state.gifCaption}
+                                        name='punCaption'
+                                        value={this.state.punCaption}
                                         onChange={this.handleChange}>
                                     </MDBInput>
-                                    <MDBBtn type='submit'>Add gif</MDBBtn>
+                                    <MDBBtn type='submit'>Edit puns</MDBBtn>
                                 </form>
                             </MDBCardBody>
                         </MDBCard>
@@ -93,4 +96,4 @@ export class NewGif extends Component {
     }
 }
 
-export default NewGif
+export default EditPun

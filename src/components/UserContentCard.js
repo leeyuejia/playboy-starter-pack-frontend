@@ -14,12 +14,14 @@ class UserContentCard extends Component {
         super(props)
 
         this.state = {
+            id: this.props.id,
             likes: this.props.likeAmt,
             commentModal: false,
-            shareModal : false,
+            shareModal: false,
             commentAmt: this.props.commentAmt
         }
     }
+
 
     toggleCommentModal = () => {
         this.setState({
@@ -31,33 +33,25 @@ class UserContentCard extends Component {
             commentAmt: commentAmt
         })
     }
-    
+
     handleDelete = async () => {
         const payload = {
-            id : this.props.id,
-            contentType : this.props.contentType
+            id: this.props.id,
+            contentType: this.props.contentType
         }
-        
+
         let c = window.confirm('confirm delete')
-        if(c) {
+        if (c) {
             this.props.handleDelete(payload)
         }
         else return false
     }
 
-    // on click function to edit content
-
-    editOneGif = () => {
-        alert('editing')
-        // this.setState({
-        //     edit: true,
-        //     image: this.props.imgUrl,
-        //     caption: this.props.caption
-        // })
-        // const payload = {
-        //     image: this.props.imgUrl,
-        //     caption: this.props.caption
-        // }
+    // on click function to update edit
+    handleEdits = contentType => {
+        if (contentType === 'Meme') window.location.href = `/session/edit/meme/${this.props.id}`;
+        if (contentType === 'Gif') window.location.href = `/session/edit/gif/${this.props.id}`;
+        if (contentType === 'Pun') window.location.href = `/session/edit/pun/${this.props.id}`;
     }
 
     // on click function to update likes
@@ -70,7 +64,6 @@ class UserContentCard extends Component {
             const payload = {
                 likes: this.state.likes
             }
-
             if (content === 'Meme') await api.updateMeme(id, payload);
             if (content === 'Gif') await api.updateGif(id, payload);
             if (content === 'Pun') await api.updatePun(id, payload);
@@ -80,19 +73,18 @@ class UserContentCard extends Component {
     }
     toggleShare = () => {
         this.setState({
-            shareModal : !this.state.shareModal
+            shareModal: !this.state.shareModal
         })
     }
 
     renderProfile = () => {
-        window.location.href=`/session/profile/${this.props.postedBy}`
+        window.location.href = `/session/profile/${this.props.postedBy}`
     }
 
     render() {
         return (
             <Fragment>
                 <MDBCard style={{ width: "22rem" }} className='m-4'>
-
                     <MDBCardImage
                         style={{ width: '100%', height: 'auto' }}
                         className="img-fluid mx-auto"
@@ -105,27 +97,29 @@ class UserContentCard extends Component {
                             {this.props.caption}
                         </MDBCardText>
 
-                        <MDBBtn href="#" size="sm" onClick={() => this.handleEdit(this.props.contentType)}>Edit</MDBBtn>
+
+                        <MDBBtn size="sm" onClick={() => this.handleEdits(this.props.contentType)}>Edit</MDBBtn>
+
                         <MDBBtn onClick={this.handleDelete} size="sm">delete</MDBBtn>{/*delete route*/}
 
                     </MDBCardBody>
                     <MDBRow className='mx-0 p-2 justify-content-center align-items-end' style={{ flex: '1 1 auto' }}>
                         <MDBCol>
-                            <MDBIcon 
-                                icon="share-alt" 
-                                size="lg" 
-                                className="m-auto align-self-center thumbs-up" 
+                            <MDBIcon
+                                icon="share-alt"
+                                size="lg"
+                                className="m-auto align-self-center thumbs-up"
                                 onClick={this.toggleShare}
                             />
                         </MDBCol>
                         <MDBCol>
 
                             <MDBRow className='mx-auto justify-content-center'>
-                                <MDBIcon 
-                                    icon="thumbs-up" 
-                                    size="lg" 
-                                    className="m-auto align-self-center thumbs-up" 
-                                    onClick={() => this.handleLikes(this.props.contentType)} 
+                                <MDBIcon
+                                    icon="thumbs-up"
+                                    size="lg"
+                                    className="m-auto align-self-center thumbs-up"
+                                    onClick={() => this.handleLikes(this.props.contentType)}
                                 />
                                 <h5 className="font-weight-light m-auto">{this.state.likes}</h5>
                             </MDBRow>
@@ -158,14 +152,14 @@ class UserContentCard extends Component {
                     :
                     null
                 }
-                {this.state.shareModal? 
+                {this.state.shareModal ?
                     <Share
                         shareModal={this.state.shareModal}
                         handleShareModal={this.toggleShare}
                         pun={this.props.pun}
                         url={this.props.imgUrl}
-                        contentType={ this.props.contentType}
-                        text={this.props.caption}/>
+                        contentType={this.props.contentType}
+                        text={this.props.caption} />
                     :
                     null
                 }

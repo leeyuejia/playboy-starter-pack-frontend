@@ -1,5 +1,7 @@
 import React, { Component, Fragment } from 'react';
+import { Route } from 'react-router-dom'
 import UserContentCard from '../components/UserContentCard';
+import EditGif from './edit/EditGif'
 
 class UserGifs extends Component {
     render() {
@@ -16,6 +18,7 @@ class UserGifs extends Component {
                     contentType={this.props.contentType}
                     likeAmt={this.props.likeAmt}
                     handleDelete = {this.props.deleteContent} />
+                    <Route path="/session/edit/gif/:id" component={EditGif} />
             </Fragment>
         )
     }

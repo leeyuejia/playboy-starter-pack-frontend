@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { MDBRow } from 'mdbreact';
 import ContentCard from '../components/ContentCard';
 import api from '../api';
-import SearchBox from '../components/SearchBox'
+import SearchBox from '../components/SearchBox';
 
 export class GifsPage extends Component {
     state = {

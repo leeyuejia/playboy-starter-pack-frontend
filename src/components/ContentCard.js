@@ -7,13 +7,14 @@ import {
 } 
 from 'mdbreact'
 import api from '../api';
-import CommentModal from './CommentModal'
+import CommentModal from './CommentModal';
 import Share from './Share'
 
 class ContentCard extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            id: this.props.id,
             commentModal: false,
             shareModal :false,
             likes: this.props.likeAmt
@@ -35,6 +36,16 @@ class ContentCard extends Component {
             commentAmt : commentAmt
         })
     }
+
+    updateGif = (commentAmt) => {
+        this.setState({
+            id: this.state.id,
+            gifImg: '',
+            gifCaption: '',
+            currentUser : this.state.currentUser
+        })
+    }
+
     // on click function to update likes
     handleLikes = async content => {
         const id = this.props.id;
@@ -127,6 +138,7 @@ class ContentCard extends Component {
                     :
                     null
                     }
+
                 {this.state.shareModal? 
                     <Share
                         shareModal={this.state.shareModal}

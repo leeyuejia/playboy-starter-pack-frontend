@@ -1,5 +1,7 @@
 import React, { Component, Fragment } from 'react'
+import { Route } from 'react-router-dom'
 import UserContentCard from '../components/UserContentCard';
+import EditMeme from './edit/EditMeme';
 
 class UserMemes extends Component {
     render() {
@@ -16,6 +18,7 @@ class UserMemes extends Component {
                     contentType={this.props.contentType}
                     likeAmt={this.props.likeAmt}
                     handleDelete = {this.props.deleteContent} />
+                    <Route path="/session/edit/meme/:id" component={EditMeme} />
             </Fragment>
         )
     }
