@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import {
     MDBContainer, MDBModal,
     MDBModalBody, MDBModalHeader,
-    MDBInput, MDBBtn
+    MDBInput, MDBBtn, MDBListGroupItem, MDBListGroup
 } from 'mdbreact'
 
 import api from '../api'
