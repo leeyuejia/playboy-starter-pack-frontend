@@ -14,11 +14,7 @@ import {
     WhatsappIcon,
     TwitterIcon,
     PinterestIcon, 
-} from "react-share";
-
-
-
-
+} from "react-share"
 
 export class Share extends Component {
     constructor(props) {

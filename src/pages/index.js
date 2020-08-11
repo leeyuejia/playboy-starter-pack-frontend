@@ -11,6 +11,10 @@ import NewGif from '../components/create/NewGif';
 import EditProfilePage from './EditProfilePage'
 import ProtectedRoute from './ProtectedRoute';
 import GamePage from './GamePage';
+import EditGifPage from './EditGifPage';
+import EditPunPage from './EditPunPage';
+import EditMemePage from './EditMemePage';
+
 // random change
 export { 
     LandingPage,
@@ -25,5 +29,8 @@ export {
     NewGif,
     EditProfilePage,
     ProtectedRoute,
-    GamePage
+    GamePage,
+    EditGifPage,
+    EditPunPage,
+    EditMemePage
 }
