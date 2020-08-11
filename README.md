@@ -1,11 +1,36 @@
 ## Playboy starter pack frontend
 
--- https://github.com/leeyuejia/playboy-starter-pack
+-- link to backend repo --> https://github.com/leeyuejia/playboy-starter-pack
+-- link to frontend repo --> https://github.com/leeyuejia/playboy-starter-pack-frontend
 
--- (link to repo)
+-- (link to deployment)
  backend deployed link ==> https://playboy-starter-pack-backend.herokuapp.com/app
  frontend deployed link ==> https://playboy-starter-pack-frontend.herokuapp.com/
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ## PACKAGE TO INSTALL BEFORE USAGE
 
