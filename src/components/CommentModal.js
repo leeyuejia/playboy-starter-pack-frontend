@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import {
     MDBContainer, MDBModal,
     MDBModalBody, MDBModalHeader,
-    MDBInput, MDBBtn
+    MDBInput, MDBBtn, MDBListGroupItem, MDBListGroup
 } from 'mdbreact'
 
 import api from '../api'
@@ -72,6 +72,17 @@ export class CommentModal extends Component {
                     <MDBModalHeader toggle={this.props.handleCommentModal} className='text-center'>
                         Comments
                 </MDBModalHeader>
+                <MDBListGroup style={{ width: "100%", height: '200px', overflow: 'scroll' }}>
+                        {this.state.comments.map ((comment,index)=> {
+                            return <MDBListGroupItem className ={index}>
+                                <div className="d-flex w-100 align-items-end">
+                                    <p className="mb-1">{comment.description}</p>
+                                </div>
+                                <small className='text-right'>posted by :{comment.commentedBy} </small>
+                            </MDBListGroupItem>
+                        })
+                    }
+                    </MDBListGroup>
                     <MDBModalBody>
                         <form onSubmit={this.postComment}>
                             <MDBInput label='comment'
