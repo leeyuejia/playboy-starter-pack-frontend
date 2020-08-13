@@ -10,6 +10,35 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 
+## PROJECT POST-MORTEM
+
+1.	What in my process and approach to this project would I do differently next time?
+2.	What in my process and approach to this project went well that I would repeat next time?
+Code and Code Design
+
+1.	What in my code and program design in the project would I do differently next time?
+2.	What in my code and program design in the project went well? Is there anything I would do the same next time?
+
+# YUEJIA
+
+1. Instead of seperating content, seperate by work part first. then features. 
+- I think my code literacy has improved alot. backend was done by javier, and i can understand the code even though i never use mongoose, passport or axios
+
+2. We were total lost at the start at how to split the work. As in no prior experience in group work. 
+- its good to straighten out the workflow and make sure the workflow works for the project. Like trello, creating repo and how we gonna deploy. we just follow on the workflow we set out to do. 
+
+1. Speed and data algorithms are my weakness. In building React, as it gets more complicated, I find it hard to manage especially the state. There are many ways to solve a problem. Do not know how to compare which is better solution. Eg. comment features. How to decide when a component need state, when it needs props. 
+
+2. Have not learn how to use the entire React component lifecycle. (https://reactjs.org/docs/state-and-lifecycle.html)
+
+componentDidMount()
+componentWillUnmount()
+componentDidUpdate()
+
+REACT Hook (danny group) to store user data. 
+
+
+
 
 
 
