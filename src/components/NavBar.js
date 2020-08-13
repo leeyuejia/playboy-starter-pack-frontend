@@ -33,6 +33,7 @@ export class NavBar extends Component {
       })
     } catch (err) {
       console.log(err)
+      console.log('Cant fetch user')
       this.setState({
         authenticated: false
       })
