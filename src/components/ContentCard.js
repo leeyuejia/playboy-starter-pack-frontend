@@ -45,17 +45,6 @@ class ContentCard extends Component {
             currentUser : this.state.currentUser
         })
     }
-        // on click function to update edit
-        handleEdits = async content => {
-            try {
-                if (content === 'Meme')  window.location.href=`/session/edit/meme/${this.props.id}`;
-                if (content === 'Gif')   window.location.href=`/session/edit/gif/${this.props.id}`;
-                if (content === 'Pun')  window.location.href=`/session/edit/pun/${this.props.id}`;
-
-            } catch (err) {
-                console.log(err)
-                }
-        }
 
     // on click function to update likes
     handleLikes = async content => {
@@ -118,13 +107,6 @@ class ContentCard extends Component {
                                 className="m-auto align-self-center thumbs-up" 
                                 onClick={this.toggleShare}
                             />
-                        </MDBCol>
-
-                        <MDBCol>
-                            <MDBRow className='mx-auto justify-content-center'>
-                                <MDBIcon icon="edit" size="lg" onClick={this.handleEdits(this.props.contentType)} className="m-auto align-self-center thumbs-up" />
-                                <h5 className="font-weight-light m-auto align-self-center"> {this.state.commentAmt}</h5> 
-                            </MDBRow>
                         </MDBCol>
                         <MDBCol>
                             <MDBRow className='mx-auto justify-content-center'>

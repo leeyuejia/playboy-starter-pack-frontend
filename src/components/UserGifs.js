@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { Route } from 'react-router-dom'
 import UserContentCard from '../components/UserContentCard';
-import EditGif from './edit/editGif'
+import EditGif from './edit/EditGif'
 
 class UserGifs extends Component {
     render() {
