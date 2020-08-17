@@ -1,11 +1,11 @@
 import React, { Component, Fragment } from 'react';
-import EditGif from '../components/edit/editGif';
+import EditGif from '../components/edit/EditGif';
 
 class EditGifPage extends Component {
     render() {
         return (
             <Fragment>
-                <EditGif />
+                <EditGif id={this.props.match.params.id} />
             </Fragment>
         )
     }
