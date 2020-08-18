@@ -32,7 +32,7 @@ export class NavBar extends Component {
         authenticated: true
       })
     } catch (err) {
-      console.log(err)
+      console.log(err.message)
       this.setState({
         authenticated: false
       })
