@@ -6,8 +6,8 @@ const api = Axios.create({
     //     Accept : "application/json",
     //     "Content-Type": "x-www-form-urlencoded"
     // },
-    baseURL: 'http://localhost:3000/app',
-    // baseURL: process.env.REACT_APP_BACKEND_URL || 'http://localhost:3000/app',
+    // baseURL: 'http://localhost:3000/app',
+    baseURL: process.env.REACT_APP_BACKEND_URL || 'http://localhost:3000/app',
 })
 
 // User
