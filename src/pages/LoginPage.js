@@ -45,6 +45,7 @@ class LandingPage extends Component {
                 username: this.state.loginUsername,
                 password: this.state.loginPassword
             }
+            console.log(payload)
             await api.loginUser(payload);
             this.setState({
                 loginUsername: '',

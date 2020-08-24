@@ -2,6 +2,10 @@ import Axios from 'axios';
 
 const api = Axios.create({
     withCredentials: true,
+    // headers: {
+    //     Accept : "application/json",
+    //     "Content-Type": "x-www-form-urlencoded"
+    // },
     // baseURL: 'http://localhost:3000/app',
     baseURL: process.env.REACT_APP_BACKEND_URL
 })

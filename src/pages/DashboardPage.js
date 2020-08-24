@@ -30,6 +30,7 @@ class DashboardPage extends Component {
     componentDidMount = async () => {
         try {
             const response = await api.getUser();
+            console.log(response.data)
             this.setState({
                 userId: response.data._id,
                 username: response.data.username,
