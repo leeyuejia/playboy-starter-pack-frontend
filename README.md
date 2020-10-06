@@ -9,6 +9,8 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+USING COMMON HEROKU ACCOUNT (details in trello board)
+
 
 ## PROJECT POST-MORTEM
 

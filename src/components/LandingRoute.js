@@ -21,8 +21,10 @@ class LandingRoute extends Component {
   render() {
     return (
       <Fragment>
+        <NavBar/>
         <Router>
           <div className="App">
+          
             <Switch>
               <Route exact path="/" component={LandingPage} />
               <Route path="/signup" component={SignUpPage} />
