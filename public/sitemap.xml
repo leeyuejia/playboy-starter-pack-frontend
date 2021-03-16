@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomSearchEngine id="1c9b74e437fa3c5b6" creator="014953560580245519503" keywords="playboy starter pack, memes, gifs, puns" language="en" encoding="UTF-8" enable_promotions="true" cx_id="1c9b74e437fa3c5b6" last_update_time_millis="1615795917337" autocompletions="true">
+  <Title>Playboy-starter-pack</Title>
+  <Description>© 2021 Developed by JJYJ | Playboy starter pack |</Description>
+  <Context>
+    <BackgroundLabels>
+      <Label name="_include_" mode="FILTER"/>
+      <Label name="_exclude_" mode="ELIMINATE"/>
+    </BackgroundLabels>
+  </Context>
+  <LookAndFeel code="4" element_layout="8" theme="7" url_length="breadcrumbs" enable_cse_thumbnail="true" promotion_url_length="full" font="2">
+    <Logo/>
+    <Colors/>
+    <Promotions/>
+    <SearchControls/>
+    <Results/>
+  </LookAndFeel>
+  <ImageSearchSettings layout="2"/>
+  <sort_by_keys label="Relevance" key=""/>
+  <sort_by_keys label="Date" key="date"/>
+  <cse_advance_settings/>
+  <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+      <loc>https://playboy-starter-pack-frontend.herokuapp.com/signup</loc>
+      <PageMap xmlns="http://www.google.com/schemas/sitemap-pagemap/1.0">
+        <DataObject type="document">
+          <Attribute name="name">Sign Up Page</Attribute>
+          <Attribute name="description">playboy starter pack sign up here</Attribute>
+        </DataObject>
+        <DataObject type="thumbnail">
+          <Attribute name="src" value="https://playboy-starter-pack-frontend.herokuapp.com/static/media/banner_bg.4236bd7e.jpg" />
+          <Attribute name="width" value="100px" />
+          <Attribute name="height" value="auto" />
+        </DataObject>
+      </PageMap>
+    </url>
+  </urlset>
+</CustomSearchEngine>

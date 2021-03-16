@@ -114,6 +114,7 @@ class SignUpPage extends Component {
                             <MDBCardTitle className='mt-4 mb-0'>
                                 <strong>Registration</strong>
                             </MDBCardTitle>
+                                <div className="gcse-search"></div>
                             {this.state.usernameError ? <MDBAlert className="mr-3 ml-3" color="warning">
                                 {this.state.usernameErrorMsg}
                             </MDBAlert> : null}
