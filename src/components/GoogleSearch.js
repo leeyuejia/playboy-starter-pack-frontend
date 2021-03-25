@@ -1,4 +1,4 @@
-import { MDBCard, MDBCol, MDBContainer, MDBCardTitle, MDBCardBody } from 'mdbreact';
+import { MDBCard, MDBCol, MDBContainer, MDBCardTitle, MDBCardBody, MDBBtn } from 'mdbreact';
 import React, { Component, Fragment } from 'react'
 
 
@@ -15,6 +15,7 @@ class GoogleSearch extends Component {
                             <MDBCardBody>
                                 <div className="gcse-search"></div>
                             </MDBCardBody>
+                            <MDBBtn href='/' style={{ textDecoration:'none' }}>Home</MDBBtn>
                         </MDBCard>
                     </MDBCol>
                 </MDBContainer>

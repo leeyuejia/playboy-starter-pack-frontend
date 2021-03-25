@@ -15,4 +15,37 @@
       </PageMap>
       <priority>0.5</priority>
     </url>
+
+    <url>
+      <loc>https://playboy-starter-pack-frontend.herokuapp.com/session/dashboard</loc>
+      <PageMap xmlns="http://www.google.com/schemas/sitemap-pagemap/1.0">
+        <DataObject type="document">
+          <Attribute name="name">Dashboard Page</Attribute>
+          <Attribute name="description">This is session / dashboard page. </Attribute>
+        </DataObject>
+        <DataObject type="thumbnail">
+          <Attribute name="src" value="https://playboy-starter-pack-frontend.herokuapp.com/static/media/banner_bg.4236bd7e.jpg" />
+          <Attribute name="width" value="99px" />
+          <Attribute name="height" value="auto" />
+        </DataObject>
+      </PageMap>
+      <priority>0.5</priority>
+    </url>
+
+    <url>
+      <loc>https://playboy-starter-pack-frontend.herokuapp.com/session/gifs</loc>
+      <PageMap xmlns="http://www.google.com/schemas/sitemap-pagemap/1.0">
+        <DataObject type="document">
+          <Attribute name="name">Gifs Page</Attribute>
+          <Attribute name="description">This is session / Gifs page. </Attribute>
+        </DataObject>
+        <DataObject type="thumbnail">
+          <Attribute name="src" value="https://playboy-starter-pack-frontend.herokuapp.com/static/media/banner_bg.4236bd7e.jpg" />
+          <Attribute name="width" value="88px" />
+          <Attribute name="height" value="auto" />
+        </DataObject>
+      </PageMap>
+      <priority>0.5</priority>
+    </url>
+
   </urlset>
