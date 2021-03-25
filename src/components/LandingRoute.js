@@ -4,9 +4,10 @@ import {
   LandingPage,
   SignUpPage,
   DashboardPage,
-  ProtectedRoute
+  ProtectedRoute,
 }
   from '../pages'
+import GoogleSearch from './GoogleSearch';
 
 class LandingRoute extends Component {
   constructor(props) {
@@ -26,6 +27,7 @@ class LandingRoute extends Component {
             <Switch>
               <Route exact path="/" component={LandingPage} />
               <Route path="/signup" component={SignUpPage} />
+              <Route path="/7/11" component={GoogleSearch}/>
               <ProtectedRoute path="/session" ><DashboardPage /></ProtectedRoute>
             </Switch>
           </div>

@@ -91,6 +91,7 @@ class LandingPage extends Component {
                                             <MDBBtn type='submit'>Sign in</MDBBtn>
                                             <MDBCardText className='my-2'>Or</MDBCardText>
                                             <MDBBtn href='/signup' style={{ textDecoration:'none' }}>Sign up</MDBBtn>
+                                            <MDBBtn href='/7/11' style={{ textDecoration:'none' }}>Go to 7/11 for GoogleSearch</MDBBtn>
                                         </div>
                                 </MDBCardBody>
                             </MDBCard>
