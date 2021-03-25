@@ -48,4 +48,20 @@
       <priority>0.5</priority>
     </url>
 
+    <url>
+      <loc>https://playboy-starter-pack-frontend.herokuapp.com/session/7/11</loc>
+      <PageMap xmlns="http://www.google.com/schemas/sitemap-pagemap/1.0">
+        <DataObject type="document">
+          <Attribute name="name">Gooogle Search Console</Attribute>
+          <Attribute name="description">This is google search console</Attribute>
+        </DataObject>
+        <DataObject type="thumbnail">
+          <Attribute name="src" value="https://playboy-starter-pack-frontend.herokuapp.com/static/media/banner_bg.4236bd7e.jpg" />
+          <Attribute name="width" value="77px" />
+          <Attribute name="height" value="auto" />
+        </DataObject>
+      </PageMap>
+      <priority>0.5</priority>
+    </url>
+
   </urlset>
